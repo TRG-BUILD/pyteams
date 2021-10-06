@@ -1,8 +1,10 @@
 import pymsteams
 
-def message(channel_list, message,title=None, link_txt=None,link_url=None, color=None):
+def message(channel_list, message,send=False,title=None, link_txt=None,link_url=None, color=None):
     teams_msg = None
     teams_msg = pymsteams.connectorcard(channel_list.pop(0))
+
+    # Setup Message
     teams_msg.text(message)
     if title:
         teams_msg.title(title)
@@ -16,11 +18,19 @@ def message(channel_list, message,title=None, link_txt=None,link_url=None, color
     if color:
         teams_msg.color(color)
 
-
-    teams_msg.printme()
+    # Send Message
+    if send:
+        teams_msg.send()
+    else:
+        print("This is a preview of the message\nTo send the message, pass the parameter 'send=True':\n\n")
+        teams_msg.printme()
     for url in channel_list:
         teams_msg.newHookUrl(url)
-        print(teams_msg.printme())
+        if send:
+            teams_msg.send()
+        else:
+            print("This is a preview of the message\nTo send the message, pass the parameter 'send=True':\n\n")
+            teams_msg.printme()
 
 if __name__ == '__main__':
     channels = ["https://aaudk.webhook.office.com/webhookb2/29bf0ebf-e12e-4f34-a06e-48e1ffbf86b1@f5dbba49-ce06-496f-ac3e-0cf14361d934/IncomingWebhook/9fce1787450e4178b4146b8fd9d08294/b65bd886-d940-47e5-bdb5-8b7ef2fb58ef"]
