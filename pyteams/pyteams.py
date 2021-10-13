@@ -22,18 +22,18 @@ def teams_message(channel_list, message,send=False,title=None, link_txt=None,lin
     if send:
         teams_msg.send()
     else:
-        print("This is a preview of the message\nTo send the message, pass the parameter 'send=True':\n")
+        print("This is a preview of the message(s) send to the connector(s)\nTo send the message, pass the parameter 'send=True':\n")
         teams_msg.printme()
     for url in channel_list:
         teams_msg.newHookUrl(url)
         if send:
             teams_msg.send()
         else:
-            print("This is a preview of the message\nTo send the message, pass the parameter 'send=True':\n")
             teams_msg.printme()
 
 if __name__ == '__main__':
-    channels = ["https://aaudk.webhook.office.com/webhookb2/29bf0ebf-e12e-4f34-a06e-48e1ffbf86b1@f5dbba49-ce06-496f-ac3e-0cf14361d934/IncomingWebhook/9fce1787450e4178b4146b8fd9d08294/b65bd886-d940-47e5-bdb5-8b7ef2fb58ef"]
+
+    channels = ["First Channel"]
     msg = "This message was sent from python"
     title = "This is a title"
     color = "#FF0000"
